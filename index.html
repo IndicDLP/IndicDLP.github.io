@@ -56,10 +56,10 @@
   </style>
 </head>
 <body>
-  <h1>Document Layout Dataset</h1>
+  <h1>IndicDLP Dataset</h1>
   <div class="authors">
-    Your Name, Collaborators<br />
-    Institute/Organization
+    Sahithi Kukkala, Oikantik Nath<br />
+    IIIT Hyderabad, IIT Madras
   </div>
 
   <div class="links">
@@ -70,21 +70,18 @@
   </div>
 
   <div class="images">
-    <img src="sample1.png" alt="sample1" />
-    <img src="sample2.png" alt="sample2" />
-    <img src="sample3.png" alt="sample3" />
+    <img src="paper_fig1_final(1).svg" alt="sample1" />
   </div>
 
   <div class="abstract">
     <div class="section-title">Abstract</div>
     <p>
-      Describe your dataset here: motivation, contents, domains, tasks, etc. Example: This dataset contains X document images across Y domains with Z region annotations.
-    </p>
+        Document layout analysis is essential for downstream tasks such as information retrieval, extraction, OCR, and digitization. However, existing large-scale datasets like PubLayNet and DocBank lack fine-grained region labels and multilingual diversity, making them insufficient for representing complex document layouts. In contrast, human-annotated datasets such as \msixdoc~and \dfourla~offer richer labels and greater domain diversity, but are too small to train robust models and lack adequate multilingual coverage. This gap is especially pronounced for Indic documents, which encompass diverse scripts yet remain underrepresented in current datasets, further limiting progress in this space. To address these shortcomings, we introduce \indicdlp, a large-scale foundational document layout dataset spanning 11 representative Indic languages alongside English and 12 common document domains. Additionally, we curate \textsc{UED-mini}, a dataset derived from DocLayNet and \msixdoc, to enhance pretraining and provide a solid foundation for Indic layout models. Our experiments demonstrate that fine-tuning existing English models on \indicdlp~significantly boosts performance, validating its effectiveness. Moreover, models trained on \indicdlp~generalize well beyond Indic layouts, making it a valuable resource for document digitization. This work bridges gaps in scale, diversity, and annotation granularity, driving inclusive and efficient document understanding.    </p>
   </div>
 
   <div class="citation">
     <div class="section-title">Citation</div>
-    <code>@article{yourcitation2025, title={Your Dataset Title}, author={Your Name et al.}, journal={ArXiv}, year={2025}}</code>
+    <code>@article{yourcitation2025, title={IndicDLP}, author={ et al.}, journal={ArXiv}, year={2025}}</code>
   </div>
 
   <div class="annotators">
@@ -99,7 +96,7 @@
 
   <div class="contact">
     <div class="section-title">Contact</div>
-    your.email@example.com
+    email@example.com
   </div>
 </body>
 </html>
