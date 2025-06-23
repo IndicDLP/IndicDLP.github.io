@@ -62,6 +62,17 @@
                                             <span>Paper</span>
                                         </a>
                                     </span>
+
+
+                                    <span class="link-block">
+                                        <a href="#" class="external-link button is-normal is-rounded is-dark" disabled>
+                                            <span class="icon">
+                                                <i class="fas fa-file-pdf"></i>
+                                            </span>
+                                            <span>supplementary paper</span>
+                                        </a>
+                                    </span>
+
                                     <span class="link-block">
                                         <a href="https://github.com/IndicDLP/IndicDLP.github.io" class="external-link button is-normal is-rounded is-dark"> <span class="icon">
                                                 <i class="fab fa-github"></i>
@@ -78,13 +89,6 @@
                                             <span>Download Dataset</span>
                                         </a>
                                     </span>
-                                    <span class="link-block">
-                                        <a href="#" class="external-link button is-normal is-rounded is-dark" disabled>
-                                            <span class="icon">
-                                                <i class="fas fa-trophy"></i>
-                                            </span>
-                                            <span>Kaggle</span>
-                                        </a>
                                     </span>
                                 </div>
                             </div>
@@ -101,7 +105,7 @@
                         <h2 class="title is-3">Abstract</h2>
                         <div class="content has-text-justified">
                             <p>
-                                Document layout analysis is essential for downstream tasks such as information retrieval, extraction, OCR, and digitization. However, existing large-scale datasets like PubLayNet and DocBank lack fine-grained region labels and multilingual diversity, making them insufficient for representing complex document layouts. In contrast, human-annotated datasets such as M6Doc and D4LA offer richer labels and greater domain diversity, but are too small to train robust models and lack adequate multilingual coverage. This gap is especially pronounced for Indic documents, which encompass diverse scripts yet remain underrepresented in current datasets, further limiting progress in this space. To address these shortcomings, we introduce IndicDLP, a large-scale foundational document layout dataset spanning 11 representative Indic languages alongside English and 12 common document domains. Additionally, we curate UED-mini, a dataset derived from DocLayNet and M6Doc, to enhance pretraining and provide a solid foundation for Indic layout models. Our experiments demonstrate that fine-tuning existing English models on IndicDLP significantly boosts performance, validating its effectiveness. Moreover, models trained on IndicDLP generalize well beyond Indic layouts, making it a valuable resource for document digitization. This work bridges gaps in scale, diversity, and annotation granularity, driving inclusive and efficient document understanding.
+                                Document layout analysis is essential for downstream tasks such as information retrieval, extraction, OCR, and digitization. However, existing large-scale datasets like PubLayNet and DocBank lack fine-grained region labels and multilingual diversity, making them insufficient for representing complex document layouts. In contrast, human-annotated datasets such as M<sup>6</sup>Doc and D<sup>4</sup>LA offer richer labels and greater domain diversity, but are too small to train robust models and lack adequate multilingual coverage. This gap is especially pronounced for Indic documents, which encompass diverse scripts yet remain underrepresented in current datasets, further limiting progress in this space. To address these shortcomings, we introduce IndicDLP, a large-scale foundational document layout dataset spanning 11 representative Indic languages alongside English and 12 common document domains. Additionally, we curate UED-mini, a dataset derived from DocLayNet and M<sup>6</sup>sup>Doc, to enhance pretraining and provide a solid foundation for Indic layout models. Our experiments demonstrate that fine-tuning existing English models on IndicDLP significantly boosts performance, validating its effectiveness. Moreover, models trained on IndicDLP generalize well beyond Indic layouts, making it a valuable resource for document digitization. This work bridges gaps in scale, diversity, and annotation granularity, driving inclusive and efficient document understanding.
                             </p>
                         </div>
                     </div>
@@ -216,10 +220,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <h2 class="subtitle has-text-centered">
-
-                                   Comparison of modern document layout parsing datasets.
-                                </h2>
+                                <p class="subtitle has-text-centered">Comparison of modern document layout parsing datasets.</p>
                             </div>
                         </div>
                     </div>
@@ -227,9 +228,9 @@
                     <div class="column is-four-fifths">
                         <h2 class="title is-3">Citation</h2>
                         <div class="content has-text-justified">
-                            <p>
+                            <h2 class="subtitle has-text-centered">
                                 Please cite our paper if you find this dataset or work useful:
-                            </p>
+                            </h2>
                             <pre><code>@article{yourcitation2025, title={IndicDLP: A Foundational Dataset for Multi-Lingual and Multi-Domain Document Layout Parsing}, author={ Oikantik Nath, Sahithi Kukkala, Mitesh Khapra, Ravi Kiran Sarvadevabhatla}, journal={ArXiv}, year={2025}}</code></pre>
                         </div>
                     </div>
