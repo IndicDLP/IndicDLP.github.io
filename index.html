@@ -140,7 +140,7 @@
 <section class="hero teaser">
     <div class="container is-max-desktop">
         <div class="hero-body has-text-centered">
-            <img src="dataset.png" alt="Sample document layout from IndicDLP" class="teaser-image" style="width: 95%; max-width: 1000px;"/>
+            <img src="dataset.png" alt="Sample document layout from IndicDLP" class="teaser-image" style="width: 70%; max-width: 700px; margin: 0 auto;"/>
             <h2 class="subtitle has-text-centered">
                 Samples from the IndicDLP dataset highlighting its diversity across document formats, domains, languages, and temporal span. For improved differentiability, segmentation masks are used instead of bounding boxes to highlight regions more effectively.
             </h2>
@@ -148,14 +148,114 @@
     </div>
 </section>
 
+<section class="hero teaser">
+    <div class="container is-max-desktop">
+        <div class="hero-body has-text-centered">
+            <img src="image_ef7fb9.png" alt="Language and Domain Contributions to IndicDLP" class="teaser-image" style="width: 80%; max-width: 800px; margin: 0 auto;"/>
+            <h2 class="subtitle has-text-centered">
+                The above figure illustrates the contributions of 12 languages (left) and 12 document domains (right) in the IndicDLP dataset. The distribution is fairly balanced across both categories, with no single language or domain overwhelmingly dominating the dataset. This ensures a diverse and well-represented collection.
+            </h2>
+        </div>
+    </div>
+</section>
+
+
 <section class="section">
     <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+                <h2 class="title is-3">Comparison with Other Datasets</h2>
+                <div class="content has-text-centered">
+                    <div class="table-container">
+                        <table class="table is-bordered is-striped is-narrow is-fullwidth">
+                            <thead>
+                                <tr>
+                                    <th>Dataset</th>
+                                    <th>#Images</th>
+                                    <th>#Region Classes</th>
+                                    <th>Annotation Method</th>
+                                    <th>#Domains</th>
+                                    <th>#Languages</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>PRImA~\cite{prima}</td>
+                                    <td>1,240</td>
+                                    <td>10</td>
+                                    <td>Automatic</td>
+                                    <td>5</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>PubLayNet~\cite{publaynet}</td>
+                                    <td>360,000</td>
+                                    <td>5</td>
+                                    <td>Automatic</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>DocBank~\cite{docbank}</td>
+                                    <td>500,000</td>
+                                    <td>13</td>
+                                    <td>Automatic</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>DocLayNet~\cite{doclaynet}</td>
+                                    <td>80,863</td>
+                                    <td>11</td>
+                                    <td><strong>Manual</strong></td>
+                                    <td>6</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td>M$^6$Doc~\cite{m6doc}</td>
+                                    <td>9,080</td>
+                                    <td><strong>75</strong></td>
+                                    <td><strong>Manual</strong></td>
+                                    <td>7</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td>D$^4$LA~\cite{dfourla}</td>
+                                    <td>11,092</td>
+                                    <td>27</td>
+                                    <td><strong>Manual</strong></td>
+                                    <td>12</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>BaDLAD~\cite{badlad}</td>
+                                    <td>33,695</td>
+                                    <td>4</td>
+                                    <td><strong>Manual</strong></td>
+                                    <td>6</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>IndicDLP (Ours)</strong></td>
+                                    <td><strong>121,198</strong></td>
+                                    <td><strong>42</strong></td>
+                                    <td><strong>Manual</strong></td>
+                                    <td><strong>12</strong></td>
+                                    <td><strong>12</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="is-size-7 has-text-centered">Comparison of modern document layout parsing datasets.</p>
+                </div>
+            </div>
+        </div>
         <div class="columns is-centered has-text-centered">
             <div class="column is-four-fifths">
                 <h2 class="title is-3">Abstract</h2>
                 <div class="content has-text-justified">
                     <p>
-                        Document layout analysis is essential for downstream tasks such as information retrieval, extraction, OCR, and digitization. However, existing large-scale datasets like PubLayNet and DocBank lack fine-grained region labels and multilingual diversity, making them insufficient for representing complex document layouts. In contrast, human-annotated datasets such as M<sup>6</sup>Doc and D<sup>4</sup>LA offer richer labels and greater domain diversity, but are too small to train robust models and lack adequate multilingual coverage. This gap is especially pronounced for Indic documents, which encompass diverse scripts yet remain underrepresented in current datasets, further limiting progress in this space. To address these shortcomings, we introduce IndicDLP, a large-scale foundational document layout dataset spanning 11 representative Indic languages alongside English and 12 common document domains. Additionally, we curate UED-mini, a dataset derived from DocLayNet and M<sup>6</sup>Doc, to enhance pretraining and provide a solid foundation for Indic layout models. Our experiments demonstrate that fine-tuning existing English models on IndicDLP significantly boosts performance, validating its effectiveness. Moreover, models trained on IndicDLP generalize well beyond Indic layouts, making it a valuable resource for document digitization. This work bridges gaps in scale, diversity, and annotation granularity, driving inclusive and efficient document understanding.
+                        Document layout analysis is essential for downstream tasks such as information retrieval, extraction, OCR, and digitization. However, existing large-scale datasets like PubLayNet and DocBank lack fine-grained region labels and multilingual diversity, making them insufficient for representing complex document layouts. In contrast, human-annotated datasets such as M6Doc and D4LA offer richer labels and greater domain diversity, but are too small to train robust models and lack adequate multilingual coverage. This gap is especially pronounced for Indic documents, which encompass diverse scripts yet remain underrepresented in current datasets, further limiting progress in this space. To address these shortcomings, we introduce IndicDLP, a large-scale foundational document layout dataset spanning 11 representative Indic languages alongside English and 12 common document domains. Additionally, we curate UED-mini, a dataset derived from DocLayNet and M6Doc, to enhance pretraining and provide a solid foundation for Indic layout models. Our experiments demonstrate that fine-tuning existing English models on IndicDLP significantly boosts performance, validating its effectiveness. Moreover, models trained on IndicDLP generalize well beyond Indic layouts, making it a valuable resource for document digitization. This work bridges gaps in scale, diversity, and annotation granularity, driving inclusive and efficient document understanding.
                     </p>
                 </div>
             </div>
