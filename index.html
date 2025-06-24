@@ -1,285 +1,527 @@
 <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset="utf-8">
-            <meta name="description"
-                  content="IndicDLP: A large-scale foundational document layout dataset spanning 11 representative Indic languages alongside English and 12 common document domains.">
-            <meta name="keywords" content="Document Layout Analysis, Multilingual, Multi-domain, Indic Languages, Deep Learning, IndicDLP">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>IndicDLP Dataset: A Foundational Dataset for Multi-Lingual and Multi-Domain Document Layout Parsing</title>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description"
+          content="IndicDLP: A large-scale foundational document layout dataset spanning 11 representative Indic languages alongside English and 12 common document domains.">
+    <meta name="keywords" content="Document Layout Analysis, Multilingual, Multi-domain, Indic Languages, Deep Learning, IndicDLP">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IndicDLP Dataset: A Foundational Dataset for Multi-Lingual and Multi-Domain Document Layout Parsing</title>
 
-            <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-                  rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+          rel="stylesheet">
 
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/css/bulma-carousel.min.css">
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-slider@7.0.0/dist/css/bulma-slider.min.css">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-            <link rel="stylesheet"
-                  href="./static/css/index.css"> <link rel="icon" href="./static/images/favicon.png"> <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-            <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/js/bulma-carousel.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bulma-slider@7.0.0/dist/js/bulma-slider.min.js"></script>
-            <script src="./static/js/index.js"></script> </head>
-        <body>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-slider@7.0.0/dist/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="icon" href="./static/images/favicon.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/js/bulma-carousel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bulma-slider@7.0.0/dist/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+    <style>
+        /* Custom styles for the Acknowledgements section */
+        #acknowledgements-section .language-pills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+        #acknowledgements-section .language-pill {
+            padding: 10px 20px;
+            border-radius: 9999px; /* Fully rounded pill shape */
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+        }
+        #acknowledgements-section .language-pill:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        #acknowledgements-section .language-pill.is-active {
+            filter: brightness(1.15);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            transform: translateY(-1px);
+        }
 
+        #acknowledgements-section .content-area {
+            background-color: #ffffff;
+            border-radius: 6px;
+            padding: 2.5rem;
+            border-top: 5px solid #dbdbdb;
+            min-height: 400px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.07);
+            transition: border-color 0.3s ease-in-out;
+        }
+        .contributor-badge {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2em 0.6em;
+            border-radius: 12px;
+            margin-left: 8px;
+            vertical-align: middle;
+            text-transform: uppercase;
+        }
+        .badge-annotator {
+            background-color: hsl(204, 86%, 53%, 0.15);
+            color: hsl(204, 86%, 43%);
+        }
+        .badge-reviewer {
+            background-color: hsl(141, 71%, 48%, 0.15);
+            color: hsl(141, 71%, 38%);
+        }
+        .badge-superchecker {
+            background-color: hsl(48, 100%, 67%, 0.25); /* Gold */
+            color: hsl(48, 100%, 32%);
+        }
+        .contributor-list {
+            -webkit-columns: 2;
+            -moz-columns: 2;
+            columns: 2;
+            column-gap: 2.5em; /* A bit more space between columns */
+        }
+        /* On smaller screens, use a single column */
+        @media (max-width: 768px) {
+            .contributor-list {
+                -webkit-columns: 1;
+                -moz-columns: 1;
+                columns: 1;
+            }
+        }
+    </style>
+</head>
+<body>
 
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+    <div class="navbar-menu">
+        <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+            </div>
+    </div>
+</nav>
 
-        <section class="hero">
-            <div class="hero-body">
-                <div class="container is-max-widescreen"> <div class="columns is-centered">
-                        <div class="column has-text-centered">
-                            <h1 class="title is-3 publication-title">IndicDLP Dataset: A Foundational Dataset for Multi-Lingual and Multi-Domain Document Layout Parsing</h1>
-                            <h2 class="title is-5 publication-title">Accpted in ICDAR 2025</h2>
-                            <div class="is-size-5 publication-authors">
-                                <span class="author-block">
-                                    Oikantik Nath<sup>1</sup>,
-                                </span>
-                                <span class="author-block">
-                                    Sahithi Kukkala<sup>2</sup>,
-                                </span>
-                                <span class="author-block">
-                                    Mitesh Khapra<sup>1</sup>,
-                                </span>
-                                <span class="author-block">
-                                    Ravi Kiran Sarvadevabhatla<sup>2</sup>
-                                </span>
-                            </div>
+<section class="hero">
+    <div class="hero-body">
+        <div class="container is-max-widescreen"> <div class="columns is-centered">
+                <div class="column has-text-centered">
+                    <h1 class="title is-3 publication-title">IndicDLP Dataset: A Foundational Dataset for Multi-Lingual and Multi-Domain Document Layout Parsing</h1>
+                    <h2 class="title is-5 publication-title">Accpted in ICDAR 2025</h2>
+                    <div class="is-size-5 publication-authors">
+                        <span class="author-block">
+                            Oikantik Nath<sup>1</sup>,
+                        </span>
+                        <span class="author-block">
+                            Sahithi Kukkala<sup>2</sup>,
+                        </span>
+                        <span class="author-block">
+                            Mitesh Khapra<sup>1</sup>,
+                        </span>
+                        <span class="author-block">
+                            Ravi Kiran Sarvadevabhatla<sup>2</sup>
+                        </span>
+                    </div>
 
-                            <div class="is-size-5 publication-authors">
-                                <span class="author-block"><sup>1</sup>IIT Madras,</span>
-                                <span class="author-block"><sup>2</sup>IIIT Hyderabad</span>
-                            </div>
+                    <div class="is-size-5 publication-authors">
+                        <span class="author-block"><sup>1</sup>IIT Madras,</span>
+                        <span class="author-block"><sup>2</sup>IIIT Hyderabad</span>
+                    </div>
 
-                            <div class="column has-text-centered">
-                                <div class="publication-links">
-                                    <span class="link-block">
-                                        <a href="#" class="external-link button is-normal is-rounded is-dark" disabled>
-                                            <span class="icon">
-                                                <i class="fas fa-file-pdf"></i>
-                                            </span>
-                                            <span>Paper</span>
-                                        </a>
+                    <div class="column has-text-centered">
+                        <div class="publication-links">
+                            <span class="link-block">
+                                <a href="#" class="external-link button is-normal is-rounded is-dark" disabled>
+                                    <span class="icon">
+                                        <i class="fas fa-file-pdf"></i>
                                     </span>
+                                    <span>Paper</span>
+                                </a>
+                            </span>
 
 
-                                    <span class="link-block">
-                                        <a href="#" class="external-link button is-normal is-rounded is-dark" disabled>
-                                            <span class="icon">
-                                                <i class="fas fa-file-pdf"></i>
-                                            </span>
-                                            <span>supplementary paper</span>
-                                        </a>
+                            <span class="link-block">
+                                <a href="#" class="external-link button is-normal is-rounded is-dark" disabled>
+                                    <span class="icon">
+                                        <i class="fas fa-file-pdf"></i>
                                     </span>
+                                    <span>supplementary paper</span>
+                                </a>
+                            </span>
 
-                                    <span class="link-block">
-                                        <a href="https://github.com/IndicDLP/IndicDLP.github.io" class="external-link button is-normal is-rounded is-dark"> <span class="icon">
-                                                <i class="fab fa-github"></i>
-                                            </span>
-                                            <span>GitHub Repo</span>
-                                        </a>
+                            <span class="link-block">
+                                <a href="https://github.com/IndicDLP/IndicDLP.github.io" class="external-link button is-normal is-rounded is-dark"> <span class="icon">
+                                        <i class="fab fa-github"></i>
                                     </span>
-                                    <span class="link-block">
-                                        <a href="https://aikosh.indiaai.gov.in/home/datasets/details/indicdlp.html"
-                                           class="external-link button is-normal is-rounded is-dark">
-                                            <span class="icon">
-                                                <i class="fas fa-download"></i>
-                                            </span>
-                                            <span>Download Dataset</span>
-                                        </a>
+                                    <span>GitHub Repo</span>
+                                </a>
+                            </span>
+                            <span class="link-block">
+                                <a href="https://aikosh.indiaai.gov.in/home/datasets/details/indicdlp.html"
+                                   class="external-link button is-normal is-rounded is-dark">
+                                    <span class="icon">
+                                        <i class="fas fa-download"></i>
                                     </span>
-                                    </span>
-                                </div>
-                            </div>
+                                    <span>Download Dataset</span>
+                                </a>
+                            </span>
+                            </span>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
-                <section class="section">
-            <div class="container is-max-widescreen"> <div class="columns is-centered has-text-centered"> <div class="column is-four-fifths">
-                        <h2 class="title is-3">Abstract</h2>
-                        <div class="content has-text-justified">
-                            <p>
-                                Document layout analysis is essential for downstream tasks such as information retrieval, extraction, OCR, and digitization. However, existing large-scale datasets like PubLayNet and DocBank lack fine-grained region labels and multilingual diversity, making them insufficient for representing complex document layouts. In contrast, human-annotated datasets such as M<sup>6</sup>Doc and D<sup>4</sup>LA offer richer labels and greater domain diversity, but are too small to train robust models and lack adequate multilingual coverage. This gap is especially pronounced for Indic documents, which encompass diverse scripts yet remain underrepresented in current datasets, further limiting progress in this space. To address these shortcomings, we introduce IndicDLP, a large-scale foundational document layout dataset spanning 11 representative Indic languages alongside English and 12 common document domains. Additionally, we curate UED-mini, a dataset derived from DocLayNet and M<sup>6</sup>sup>Doc, to enhance pretraining and provide a solid foundation for Indic layout models. Our experiments demonstrate that fine-tuning existing English models on IndicDLP significantly boosts performance, validating its effectiveness. Moreover, models trained on IndicDLP generalize well beyond Indic layouts, making it a valuable resource for document digitization. This work bridges gaps in scale, diversity, and annotation granularity, driving inclusive and efficient document understanding.
-                            </p>
-                        </div>
-                    </div>
+<section class="section">
+    <div class="container is-max-widescreen"> <div class="columns is-centered has-text-centered"> <div class="column is-four-fifths">
+                <h2 class="title is-3">Abstract</h2>
+                <div class="content has-text-justified">
+                    <p>
+                        Document layout analysis is essential for downstream tasks such as information retrieval, extraction, OCR, and digitization. However, existing large-scale datasets like PubLayNet and DocBank lack fine-grained region labels and multilingual diversity, making them insufficient for representing complex document layouts. In contrast, human-annotated datasets such as M<sup>6</sup>Doc and D<sup>4</sup>LA offer richer labels and greater domain diversity, but are too small to train robust models and lack adequate multilingual coverage. This gap is especially pronounced for Indic documents, which encompass diverse scripts yet remain underrepresented in current datasets, further limiting progress in this space. To address these shortcomings, we introduce IndicDLP, a large-scale foundational document layout dataset spanning 11 representative Indic languages alongside English and 12 common document domains. Additionally, we curate UED-mini, a dataset derived from DocLayNet and M<sup>6</sup>sup>Doc, to enhance pretraining and provide a solid foundation for Indic layout models. Our experiments demonstrate that fine-tuning existing English models on IndicDLP significantly boosts performance, validating its effectiveness. Moreover, models trained on IndicDLP generalize well beyond Indic layouts, making it a valuable resource for document digitization. This work bridges gaps in scale, diversity, and annotation granularity, driving inclusive and efficient document understanding.
+                    </p>
                 </div>
-        </section>
+            </div>
+        </div>
+</section>
 
-        <section class="hero teaser">
-            <div class="container is-max-widescreen"> <div class="hero-body has-text-centered">
-                    <img src="dataset.png" alt="Sample document layout from IndicDLP" class="teaser-image" style="width: 70%; max-width: 700px; margin: 0 auto;"/>
+<section class="hero teaser">
+    <div class="container is-max-widescreen"> <div class="hero-body has-text-centered">
+            <img src="dataset.png" alt="Sample document layout from IndicDLP" class="teaser-image" style="width: 70%; max-width: 700px; margin: 0 auto;"/>
+            <h2 class="subtitle has-text-centered">
+                Samples from the IndicDLP dataset highlighting its diversity across document formats, domains, languages, and temporal span. For improved differentiability, segmentation masks are used instead of bounding boxes to highlight regions more effectively.
+            </h2>
+        </div>
+    </div>
+</section>
+
+<section class="hero teaser">
+    <div class="container is-max-widescreen"> <div class="hero-body has-text-centered">
+            <img src="combined_doughnut.png" alt="Language and Domain Contributions to IndicDLP" class="teaser-image" style="width: 100%; max-width: 1000px; margin: 0 auto;"/>
+            <h2 class="subtitle has-text-centered">
+                The above figure illustrates the contributions of 12 languages (left) and 12 document domains (right) in the IndicDLP dataset. The distribution is fairly balanced across both categories, with no single language or domain overwhelmingly dominating the dataset. This ensures a diverse and well-represented collection.
+            </h2>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container is-max-widescreen"> <div class="columns is-centered"> <div class="column is-four-fifths">
+                <h2 class="title is-3">Comparison with Other Datasets</h2>
+                <div class="content has-text-centered">
+                    <div class="table-container">
+                        <table class="table is-bordered is-striped is-narrow is-fullwidth">
+                            <thead>
+                                <tr>
+                                    <th>Dataset</th>
+                                    <th>#Images</th>
+                                    <th>#Region Classes</th>
+                                    <th>Annotation Method</th>
+                                    <th>#Domains</th>
+                                    <th>#Languages</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>PRImA</td>
+                                    <td>1,240</td>
+                                    <td>10</td>
+                                    <td>Automatic</td>
+                                    <td>5</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>PubLayNet</td>
+                                    <td>360,000</td>
+                                    <td>5</td>
+                                    <td>Automatic</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>DocBank</td>
+                                    <td>500,000</td>
+                                    <td>13</td>
+                                    <td>Automatic</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>DocLayNet</td>
+                                    <td>80,863</td>
+                                    <td>11</td>
+                                    <td><strong>Manual</strong></td>
+                                    <td>6</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td>M<sup>6</sup>Doc</td>
+                                    <td>9,080</td>
+                                    <td><strong>75</strong></td>
+                                    <td><strong>Manual</strong></td>
+                                    <td>7</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td>D<sup>4</sup>LA</td>
+                                    <td>11,092</td>
+                                    <td>27</td>
+                                    <td><strong>Manual</strong></td>
+                                    <td>12</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>BaDLAD</td>
+                                    <td>33,695</td>
+                                    <td>4</td>
+                                    <td><strong>Manual</strong></td>
+                                    <td>6</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>IndicDLP (Ours)</strong></td>
+                                    <td><strong>121,198</strong></td>
+                                    <td><strong>42</strong></td>
+                                    <td><strong>Manual</strong></td>
+                                    <td><strong>12</strong></td>
+                                    <td><strong>12</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="subtitle has-text-centered">Comparison of modern document layout parsing datasets.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container is-max-widescreen"> <div class="columns is-centered"> <div class="column is-four-fifths">
+                <h2 class="title is-3">Citation</h2>
+                <div class="content has-text-justified">
                     <h2 class="subtitle has-text-centered">
-                        Samples from the IndicDLP dataset highlighting its diversity across document formats, domains, languages, and temporal span. For improved differentiability, segmentation masks are used instead of bounding boxes to highlight regions more effectively.
+                        Please cite our paper if you find this dataset or work useful:
                     </h2>
+                    <pre><code>@article{yourcitation2025, title={IndicDLP: A Foundational Dataset for Multi-Lingual and Multi-Domain Document Layout Parsing}, author={ Oikantik Nath, Sahithi Kukkala, Mitesh Khapra, Ravi Kiran Sarvadevabhatla}, journal={ArXiv}, year={2025}}</code></pre>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section class="hero teaser">
-            <div class="container is-max-widescreen"> <div class="hero-body has-text-centered">
-                    <img src="combined_doughnut.png" alt="Language and Domain Contributions to IndicDLP" class="teaser-image" style="width: 100%; max-width: 1000px; margin: 0 auto;"/>
-                    <h2 class="subtitle has-text-centered">
-                        The above figure illustrates the contributions of 12 languages (left) and 12 document domains (right) in the IndicDLP dataset. The distribution is fairly balanced across both categories, with no single language or domain overwhelmingly dominating the dataset. This ensures a diverse and well-represented collection.
-                    </h2>
-                </div>
-            </div>
-        </section>
-
-            <section class="section">
-                <div class="container is-max-widescreen"> <div class="columns is-centered"> <div class="column is-four-fifths">
-                            <h2 class="title is-3">Comparison with Other Datasets</h2>
-                            <div class="content has-text-centered">
-                                <div class="table-container">
-                                    <table class="table is-bordered is-striped is-narrow is-fullwidth">
-                                        <thead>
-                                            <tr>
-                                                <th>Dataset</th>
-                                                <th>#Images</th>
-                                                <th>#Region Classes</th>
-                                                <th>Annotation Method</th>
-                                                <th>#Domains</th>
-                                                <th>#Languages</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>PRImA</td>
-                                                <td>1,240</td>
-                                                <td>10</td>
-                                                <td>Automatic</td>
-                                                <td>5</td>
-                                                <td>1</td>
-                                            </tr>
-                                            <tr>
-                                                <td>PubLayNet</td>
-                                                <td>360,000</td>
-                                                <td>5</td>
-                                                <td>Automatic</td>
-                                                <td>1</td>
-                                                <td>1</td>
-                                            </tr>
-                                            <tr>
-                                                <td>DocBank</td>
-                                                <td>500,000</td>
-                                                <td>13</td>
-                                                <td>Automatic</td>
-                                                <td>1</td>
-                                                <td>1</td>
-                                            </tr>
-                                            <tr>
-                                                <td>DocLayNet</td>
-                                                <td>80,863</td>
-                                                <td>11</td>
-                                                <td><strong>Manual</strong></td>
-                                                <td>6</td>
-                                                <td>4</td>
-                                            </tr>
-                                            <tr>
-                                                <td>M<sup>6</sup>Doc</td>
-                                                <td>9,080</td>
-                                                <td><strong>75</strong></td>
-                                                <td><strong>Manual</strong></td>
-                                                <td>7</td>
-                                                <td>2</td>
-                                            </tr>
-                                            <tr>
-                                                <td>D<sup>4</sup>LA</td>
-                                                <td>11,092</td>
-                                                <td>27</td>
-                                                <td><strong>Manual</strong></td>
-                                                <td>12</td>
-                                                <td>1</td>
-                                            </tr>
-                                            <tr>
-                                                <td>BaDLAD</td>
-                                                <td>33,695</td>
-                                                <td>4</td>
-                                                <td><strong>Manual</strong></td>
-                                                <td>6</td>
-                                                <td>1</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>IndicDLP (Ours)</strong></td>
-                                                <td><strong>121,198</strong></td>
-                                                <td><strong>42</strong></td>
-                                                <td><strong>Manual</strong></td>
-                                                <td><strong>12</strong></td>
-                                                <td><strong>12</strong></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <p class="subtitle has-text-centered">Comparison of modern document layout parsing datasets.</p>
+        <section class="section" id="acknowledgements-section">
+            <div class="container is-max-widescreen"> <div class="columns is-centered">
+                    <div class="column is-full">
+                        <h2 class="title is-3">Acknowledgements</h2> <div class="language-pills" id="language-pills-container">
+                            </div>
+                        
+                        <div class="content-area" id="contributors-display">
+                            <div class="has-text-centered p-6">
+                                <p class="is-size-5 has-text-grey">Select a language to see the list of contributors.</p>
                             </div>
                         </div>
-                    </div>
-                        <div class="columns is-centered"> <div class="column is-four-fifths">
-                        <h2 class="title is-3">Citation</h2>
-                        <div class="content has-text-justified">
-                            <h2 class="subtitle has-text-centered">
-                                Please cite our paper if you find this dataset or work useful:
-                            </h2>
-                            <pre><code>@article{yourcitation2025, title={IndicDLP: A Foundational Dataset for Multi-Lingual and Multi-Domain Document Layout Parsing}, author={ Oikantik Nath, Sahithi Kukkala, Mitesh Khapra, Ravi Kiran Sarvadevabhatla}, journal={ArXiv}, year={2025}}</code></pre>
-                        </div>
-                    </div>
-                </div>
-                <div class="columns is-centered"> <div class="column is-four-fifths">
-                        <h2 class="title is-3">Annotators</h2>
-                        <div class="content has-text-justified">
+                         <div class="content has-text-justified mt-5">
                             <p>
-                                Names of contributors here.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="columns is-centered"> <div class="column is-four-fifths">
-                        <h2 class="title is-3">Acknowledgements</h2>
-                        <div class="content has-text-justified">
-                            <p>
-                                Indian Institute of Technology, Madras, India<br/>
-                                International Institute of Information Technology Hyderabad, India
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="columns is-centered"> <div class="column is-four-fifths">
-                        <h2 class="title is-3">Contact</h2>
-                        <div class="content has-text-justified">
-                            <p>
-                                oikantik@cse.iitm.ac.in,<br/>
-                                sahithi.kukkala@research.iiit.ac.in,<br/>
-                                mitheshk.cse.iitm.ac.in,<br/>
-                                ravi.kiran@iiit.ac.in
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                </div>
-        </section>
-
-
-        <footer class="footer">
-            <div class="container is-max-widescreen"> <div class="content has-text-centered">
-                    <a class="icon-link" href="#" target="_blank"> <i class="fas fa-file-pdf"></i>
-                    </a>
-                    <a class="icon-link" href="#" target="_blank"> <i class="fab fa-github"></i>
-                    </a>
-                </div>
-                <div class="columns is-centered">
-                    <div class="column is-8">
-                        <div class="content">
-                            <p>
-                                This website is adapted from a template by <a href="https://github.com/nerfies/nerfies.github.io" target="_blank">Nerfies</a>.
+                                We would like to acknowledge the support from Indian Institute of Technology, Madras, India and International Institute of Information Technology Hyderabad, India.
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
-        </footer>
+        </section>
+        </div>
+</section>
 
-        </body>
-        </html>
+<footer class="footer">
+    <div class="container is-max-widescreen"> <div class="content has-text-centered">
+            <a class="icon-link" href="#" target="_blank"> <i class="fas fa-file-pdf"></i>
+            </a>
+            <a class="icon-link" href="#" target="_blank"> <i class="fab fa-github"></i>
+            </a>
+        </div>
+        <div class="columns is-centered">
+            <div class="column is-8">
+                <div class="content">
+                    <p>
+                        This website is adapted from a template by <a href="https://github.com/nerfies/nerfies.github.io" target="_blank">Nerfies</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- Contributor Data (Finalized) ---
+        const annotators = [
+            { "name": "Ajit Kumar Sarma", "languages": ["Assamese"] }, { "name": "Riya Chutia", "languages": ["Assamese"] },
+            { "name": "Anjali Steephan", "languages": ["Assamese"] }, { "name": "Madhutrishna Chetia", "languages": ["Assamese"] },
+            { "name": "Ruh Ullah Khan", "languages": ["Assamese"] }, { "name": "Gargi Mukherjee Kolley", "languages": ["Bengali"] },
+            { "name": "Madhumita Pal", "languages": ["Bengali"] }, { "name": "PRIYANJANA BANERJEE", "languages": ["Bengali"] },
+            { "name": "Soupat Biswas", "languages": ["Bengali"] }, { "name": "Sushmita Pal", "languages": ["Bengali"] },
+            { "name": "Ghiridharan M G", "languages": ["English"] }, { "name": "Rubeena", "languages": ["English"] },
+            { "name": "Vidhya J G", "languages": ["English"] }, { "name": "Munish Mangla", "languages": ["English"] },
+            { "name": "bhargavbhatt", "languages": ["Gujarati"] }, { "name": "Kinjal Joshi", "languages": ["Gujarati"] },
+            { "name": "Naman Mehta", "languages": ["Gujarati"] }, { "name": "ParthB", "languages": ["Gujarati"] },
+            { "name": "Parthiv Makwana", "languages": ["Gujarati"] }, { "name": "Shreya Parmar", "languages": ["Gujarati"] },
+            { "name": "Vama Soni", "languages": ["Gujarati"] }, { "name": "Adiba Khan", "languages": ["Hindi"] },
+            { "name": "Anima Chetry", "languages": ["Hindi"] }, { "name": "Arati Giri", "languages": ["Hindi"] },
+            { "name": "Ashish Kumar Jha", "languages": ["Hindi"] }, { "name": "Bhakti Rai", "languages": ["Hindi"] },
+            { "name": "Furtengi Sherpa", "languages": ["Hindi"] }, { "name": "Keshav Prasad Sapkota", "languages": ["Hindi"] },
+            { "name": "Nilesh lagade", "languages": ["Hindi"] }, { "name": "Rushaid Abbas", "languages": ["Hindi"] },
+            { "name": "NandiniVijay", "languages": ["Kannada"] }, { "name": "Rajeshwari Lakkannavar", "languages": ["Kannada"] },
+            { "name": "Virat Kumar Pandey", "languages": ["Kannada"] }, { "name": "Charulatha S", "languages": ["Kannada"] },
+            { "name": "Vidya Kulkarni", "languages": ["Kannada"] }, { "name": "Suma Girish", "languages": ["Kannada"] },
+            { "name": "ABHINAV P M", "languages": ["Malayalam"] }, { "name": "Amal I C", "languages": ["Malayalam"] },
+            { "name": "Nadha rashada S V", "languages": ["Malayalam"] }, { "name": "SANJAY.R", "languages": ["Malayalam"] },
+            { "name": "Sreelekshmi S", "languages": ["Malayalam"] }, { "name": "Manjunath Renake", "languages": ["Marathi"] },
+            { "name": "Sachin Deepak Londhe", "languages": ["Marathi"] }, { "name": "Nitin Paranjape", "languages": ["Marathi"] },
+            { "name": "Tejas Vishnupant Akhare", "languages": ["Marathi"] }, { "name": "Lalatendu Bidyadhar Das", "languages": ["Odia"] },
+            { "name": "Rajat Kumar patra", "languages": ["Odia"] }, { "name": "Satyabrat Badajena", "languages": ["Odia"] },
+            { "name": "Sradhanjali Pradhan", "languages": ["Odia"] }, { "name": "Inderpreet", "languages": ["Punjabi"] },
+            { "name": "Jaydeep singh shahu", "languages": ["Punjabi"] }, { "name": "Niharika Khanna", "languages": ["Punjabi"] },
+            { "name": "Harvindersingh Gurmeetsingh Ragi", "languages": ["Punjabi"] }, { "name": "Lovepreet Singh", "languages": ["Punjabi"] },
+            { "name": "Sukhpreet Kaur", "languages": ["Punjabi"] }, { "name": "N. Gana Priyan", "languages": ["Tamil"] },
+            { "name": "Bensha Joyson", "languages": ["Tamil"] }, { "name": "N.Indupriya", "languages": ["Tamil"] },
+            { "name": "EDIGA SIVAKUMAR GOUD", "languages": ["Telugu"] }, { "name": "Naresh nune", "languages": ["Telugu"] },
+            { "name": "Deepika Senapathi", "languages": ["Telugu"] }, { "name": "VAKKAPATI.DIVYASRI", "languages": ["Telugu"] },
+            { "name": "Vani Bhaskar", "languages": ["Telugu"] }
+        ];
+
+        const reviewers = [
+            { "name": "Rondeep Bordoloi", "languages": ["Assamese", "Bengali"] }, { "name": "Ragavan S", "languages": ["English", "Kannada"] },
+            { "name": "KanizFatema", "languages": ["Gujarati"] }, { "name": "Puru Koli", "languages": ["Hindi"] },
+            { "name": "Ramya", "languages": ["Kannada", "Malayalam"] }, { "name": "Sreejanani Sanke", "languages": ["Kannada", "Telugu"] },
+            { "name": "Swetha", "languages": ["Malayalam", "Tamil"] }, { "name": "NIKITA DIGRASKAR", "languages": ["Marathi"] },
+            { "name": "Harihara Barik", "languages": ["Odia"] }, { "name": "SaranpalSingh", "languages": ["Punjabi"] }
+        ];
+
+        const supercheckers = [
+            { "name": "Yuvaraj", "languages": ["Assamese", "English", "Punjabi"] },
+            { "name": "Praneeth Reddy", "languages": ["Bengali", "Gujarati", "Telugu"] },
+            { "name": "Hemavardhini R", "languages": ["English", "Hindi", "Kannada", "Tamil"] },
+            { "name": "Neha Bandekar", "languages": ["Malayalam", "Marathi", "Odia"] }
+        ];
+        
+        // --- Data Processing ---
+        const contributorsByLanguage = {};
+
+        const processContributors = (list, role) => {
+            list.forEach(person => {
+                person.languages.forEach(lang => {
+                    if (!contributorsByLanguage[lang]) {
+                        contributorsByLanguage[lang] = { contributors: [] };
+                    }
+                    const exists = contributorsByLanguage[lang].contributors.some(c => c.name === person.name && c.role === role);
+                    if (!exists) {
+                       contributorsByLanguage[lang].contributors.push({ name: person.name, role });
+                    }
+                });
+            });
+        };
+        
+        processContributors(annotators, 'Annotator');
+        processContributors(reviewers, 'Reviewer');
+        processContributors(supercheckers, 'Superchecker');
+
+        for (const lang in contributorsByLanguage) {
+            // Sort by role first (Superchecker -> Reviewer -> Annotator), then by name
+            contributorsByLanguage[lang].contributors.sort((a,b) => {
+                const roleOrder = { 'Superchecker': 0, 'Reviewer': 1, 'Annotator': 2 };
+                if (roleOrder[a.role] !== roleOrder[b.role]) {
+                    return roleOrder[a.role] - roleOrder[b.role];
+                }
+                return a.name.localeCompare(b.name);
+            });
+        }
+
+        // --- UI Generation and Event Handling ---
+        const languagePillsContainer = document.getElementById('language-pills-container');
+        const contributorsDisplay = document.getElementById('contributors-display');
+        const languages = Object.keys(contributorsByLanguage).sort();
+
+        // Using a curated pastel color palette
+        const langColors = {
+            "Assamese": "#a7c7e7", "Bengali":  "#b2d8b2", "Bodo": "#c3b1e1", "Dogri": "#d6cadd",
+            "English":  "#ffb3a7", "Gujarati": "#fdfd96", "Hindi":    "#ffd1a7", "Kannada":  "#afedee",
+            "Konkani":  "#bde6e8", "Maithili": "#ffcba4", "Malayalam":"#b4f8c8", "Marathi":  "#f3dca4",
+            "Nepali":   "#e3c2c2", "Odia":     "#b9d9eb", "Punjabi":  "#ffd1dc", "Sanskrit": "#d3d3d3",
+            "Santali":  "#99c5c4", "Sindhi":   "#e4d8b4", "Tamil":    "#ffa07a", "Telugu":   "#ffc8a2"
+        };
+        
+        // Custom text colors for better readability on light pastel backgrounds
+        const textColors = {
+             "Gujarati": "#363636", "Kannada": "#363636", "Konkani": "#363636",
+             "Malayalam": "#363636", "Punjabi": "#363636", "Sindhi": "#363636",
+             "Telugu": "#363636", "Assamese": "#363636", "Bengali": "#363636", 
+             "English": "#363636", "Hindi": "#363636", "Marathi": "#363636",
+             "Odia": "#363636", "Tamil": "#363636"
+        }
+
+        languages.forEach(lang => {
+            const pill = document.createElement('a');
+            pill.textContent = lang;
+            pill.dataset.language = lang;
+            pill.className = 'language-pill';
+            pill.style.backgroundColor = langColors[lang] || '#d3d3d3';
+            pill.style.color = textColors[lang] || '#fff';
+            languagePillsContainer.appendChild(pill);
+        });
+
+        languagePillsContainer.addEventListener('click', (event) => {
+            if (event.target.classList.contains('language-pill')) {
+                const selectedLanguage = event.target.dataset.language;
+                
+                document.querySelectorAll('.language-pill').forEach(pill => pill.classList.remove('is-active'));
+                event.target.classList.add('is-active');
+
+                displayContributors(selectedLanguage);
+            }
+        });
+
+        function displayContributors(lang) {
+            const data = contributorsByLanguage[lang];
+            contributorsDisplay.innerHTML = ''; // Clear previous content
+            
+            contributorsDisplay.style.borderColor = langColors[lang] || '#dbdbdb';
+
+            if (data && data.contributors) {
+                // Create a single list for all contributors
+                const list = document.createElement('ul');
+                list.className = 'contributor-list';
+                list.style.listStyle = 'none';
+                list.style.marginLeft = '0';
+
+                data.contributors.forEach(person => {
+                    const li = document.createElement('li');
+                    const badgeClass = `badge-${person.role.toLowerCase()}`;
+                    li.innerHTML = `${person.name} <span class="contributor-badge ${badgeClass}">${person.role}</span>`;
+                    list.appendChild(li);
+                });
+
+                contributorsDisplay.appendChild(list);
+            }
+        }
+
+        // Set initial state
+        if (languages.length > 0) {
+            languagePillsContainer.querySelector('.language-pill')?.click();
+        }
+    });
+</script>
+
+</body>
+</html>
